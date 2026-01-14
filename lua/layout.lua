@@ -8,7 +8,7 @@ local M = {}
 
 M.cfg = {
   left_width = 50,            -- request: make tree wider
-  left_bottom_height = 50,    -- keifu terminal height
+  left_bottom_height = 64,    -- keifu terminal height
   center_bottom_height = 24,  -- center bottom terminal height
   keifu_cmd = "keifu",
   open_on_start = true,

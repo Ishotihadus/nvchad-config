@@ -16,6 +16,13 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFocus" },
+    opts = {
+      actions = {
+        open_file = {
+          resize_window = false,  -- ファイルを開いてもウィンドウサイズを変えない
+        },
+      },
+    },
   },
   {
     "coder/claudecode.nvim",

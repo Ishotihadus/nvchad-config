@@ -13,6 +13,24 @@ return {
     end,
   },
 
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFocus" },
+  },
+  {
+    "coder/claudecode.nvim",
+    lazy = false,
+    dependencies = { "folke/snacks.nvim" },
+    opts = {
+      terminal_cmd = "~/.local/bin/claude", -- Point to local installation
+    },
+    config = true,
+    keys = {
+      -- Your keymaps here
+    },
+    cmd = { "ClaudeCode" },
+  }
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 

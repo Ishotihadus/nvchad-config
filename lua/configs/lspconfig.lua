@@ -38,20 +38,19 @@ vim.lsp.enable(servers)
 vim.opt.updatetime = 1000
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
-    -- ホワイトリスト: hover を有効にするファイルタイプ
-    local allowed_ft = {
-      "python", "ruby",
-      "html", "css", "javascript", "typescript",
-      "lua", "json", "yaml", "markdown"
-    }
-    local ft = vim.bo.filetype
-    if not vim.tbl_contains(allowed_ft, ft) then
-      return
+    -- hover capabilityをサポートするLSPクライアントが存在するか確認
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    local has_hover = false
+    for _, client in ipairs(clients) do
+      if client.supports_method("textDocument/hover") then
+        has_hover = true
+        break
+      end
     end
 
-    -- LSPがアタッチされているバッファのみ
-    if #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
-      vim.lsp.buf.hover({ border = "rounded" })
+    if has_hover then
+      -- エラーが発生しても静かに失敗させる
+      pcall(vim.lsp.buf.hover, { border = "rounded" })
     end
   end,
 })

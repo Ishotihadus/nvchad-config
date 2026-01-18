@@ -18,3 +18,9 @@ map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal: move to above window"
 map("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal: move to right window" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- :q と :q! を無効化（:qa などは残す）
+vim.cmd([[
+  cnoreabbrev <expr> q (getcmdtype() == ':' && getcmdline() ==# 'q') ? 'echo "Use :qa to quit"' : 'q'
+  cnoreabbrev <expr> q! (getcmdtype() == ':' && getcmdline() ==# 'q!') ? 'echo "Use :qa! to quit"' : 'q!'
+]])

@@ -55,7 +55,7 @@ return {
     lazy = false,
     opts = {
       recipe = { "default", { animate = true }},
-      fadelevel = 0.2
+      fadelevel = 0.7
     }
   },
   {
